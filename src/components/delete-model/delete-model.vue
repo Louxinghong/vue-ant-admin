@@ -1,0 +1,54 @@
+<template>
+  <div>
+    <a-modal
+      :title="title"
+      :visible="visible"
+      :confirm-loading="loading"
+      @ok="onConfirmDelete"
+      @cancel="onCancelDelete"
+    >
+      <img class="warnImg" src="../../assets/images/warn.png" alt="" />
+      <span>{{ content ? content : "确认要删除相关信息吗" }}</span>
+    </a-modal>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "DeleteModel",
+  data() {
+    return {
+      visible: false,
+      title: "",
+      content: "",
+      loading: false,
+      data: {},
+    };
+  },
+  methods: {
+    handleshowModal(e) {
+      this.visible = true;
+      this.title = e.title;
+      this.content = e.content;
+      this.data = e.data;
+    },
+    onConfirmDelete() {
+      this.onCancelDelete();
+      this.$emit("listenToChangebtn", this.data);
+    },
+    onCancelDelete() {
+      this.visible = false;
+      this.title = "";
+      this.content = "";
+    },
+  },
+};
+</script>
+
+<style scoped>
+.warnImg {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+</style>
