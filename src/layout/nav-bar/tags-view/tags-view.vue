@@ -14,23 +14,18 @@
         @DOMMouseScroll="onMouseScroll"
         @mousewheel="onMouseScroll"
       >
-        <router-link class="tag" v-for="item in 20" :key="item" to="/">
-          <span>标签测试 + {{ item }}</span>
-          <a-icon type="close"></a-icon>
+        <router-link
+          class="tag"
+          v-for="tag in visitedViews"
+          :key="tag.path"
+          :class="isActive(tag) ? 'active' : ''"
+          :to="tag.path"
+          @click.native="onOpenNowContent"
+        >
+          <span>{{ tag.meta.title }}</span>
+          <a-icon type="close" @click.prevent.stop="onCloseTag(tag)"></a-icon>
         </router-link>
       </div>
-
-      <!-- <router-link
-        class="tag"
-        v-for="tag in visitedViews"
-        :key="tag.path"
-        :class="isActive(tag) ? 'active' : ''"
-        :to="tag.path"
-        @click.native="onOpenNowContent"
-      >
-        <span>{{ tag.meta.title }}</span>
-        <a-icon type="close" @click.prevent.stop="onCloseTag(tag)"></a-icon>
-      </router-link> -->
     </div>
     <div class="right-operation">
       <a-button

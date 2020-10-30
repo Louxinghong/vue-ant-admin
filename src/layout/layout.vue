@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="less">
-@isCollapse: 70px;
+@isCollapse: 80px;
 @notCollapse: 250px;
 
 .layout {
@@ -87,9 +87,10 @@ export default {
       .ant-menu-inline-collapsed {
         .ant-menu-item,
         .ant-menu-submenu-title {
-          padding: 0 24px !important;
+          padding: 0 30px !important;
 
           i {
+            margin-top: 5px;
             font-size: 20px;
           }
         }

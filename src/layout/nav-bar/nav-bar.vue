@@ -69,7 +69,8 @@ export default {
   }
 
   .nav-left {
-    .anticon-menu-fold {
+    .anticon-menu-fold,
+    .anticon-menu-unfold {
       margin-right: 10px;
     }
   }
