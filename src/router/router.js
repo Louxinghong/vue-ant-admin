@@ -11,7 +11,27 @@ VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch((err) => err);
 };
 
+/**
+* path: '',
+* redirect: noredirect,           设为 noredirect 则该路由在 breadcrumb 上点击不会跳转
+* name:'router-name',             设置名称以便路由被 <keep-alive> 缓存，必须设置
+* componet: () => import(),       需引入的组件
+* hidden: true,                   设为 true 则该路由不会显示在 sidebar，默认为 false
+* isShowFirstLevel: true,               设为 true 则根路由会一直显示, 无论子路由的多少；没有设置的话, 则只会显示子路由
+* meta : {
+    title: 'title'               用来在 sidebar 和 breadcrumb 上显示标题，建议设置
+    icon: 'icon class'           用来在 sidebar 上显示图标
+  }
+**/
+
 export const routes = [
+  {
+    path: "/login",
+    name: "Login",
+    hidden: true,
+    component: () =>
+      import(/** webpackChunkName: 'group-login' */ "@/views/login/login.vue"),
+  },
   {
     path: "/",
     redirect: "/dashboard",

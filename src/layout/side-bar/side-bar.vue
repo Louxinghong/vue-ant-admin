@@ -16,7 +16,10 @@
         <span>测试后台</span>
       </a-menu-item>
       <template v-for="item in routes">
-        <a-menu-item v-if="!item.isShowFirstLevel" :key="item.children[0].name">
+        <a-menu-item
+          v-if="!item.isShowFirstLevel && !item.hidden"
+          :key="item.children[0].name"
+        >
           <router-link :to="item.path">
             <a-icon
               v-if="item.children[0].meta.icon"
@@ -42,13 +45,13 @@ import { Menu } from "ant-design-vue";
 import { routes } from "@/router/router";
 const SubMenu = {
   template: `
-              <a-sub-menu :key="menuInfo.name" v-bind="$props" v-on="$listeners">
+              <a-sub-menu v-if="!menuInfo.hidden" :key="menuInfo.name" v-bind="$props" v-on="$listeners">
                 <span class="slot-title" slot="title">
                   <a-icon v-if="menuInfo.meta.icon" :type="menuInfo.meta.icon" />
                   <span>{{ menuInfo.meta.title }}</span>
                 </span>
                 <template v-for="itemSon in menuInfo.children">
-                  <a-menu-item v-if="!itemSon.children" :key="itemSon.name">
+                  <a-menu-item v-if="!itemSon.children && !itemSon.hidden" :key="itemSon.name">
                     <router-link :to="basePath + '/' + itemSon.path">
                       <a-icon v-if="itemSon.meta.icon" :type="itemSon.meta.icon" />
                       <span>{{ itemSon.meta.title }}</span>
