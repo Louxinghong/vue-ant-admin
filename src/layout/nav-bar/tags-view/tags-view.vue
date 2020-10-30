@@ -1,10 +1,26 @@
 <template>
   <div class="tags-view">
     <div class="left-operation">
-      <a-button icon="left"></a-button>
+      <a-button
+        :disabled="btnDisabled"
+        icon="left"
+        @click="onHandleScroll(-120)"
+      ></a-button>
     </div>
     <div class="tags">
-      <router-link
+      <div
+        class="tags-content"
+        ref="tagsContent"
+        @DOMMouseScroll="onMouseScroll"
+        @mousewheel="onMouseScroll"
+      >
+        <router-link class="tag" v-for="item in 20" :key="item" to="/">
+          <span>标签测试 + {{ item }}</span>
+          <a-icon type="close"></a-icon>
+        </router-link>
+      </div>
+
+      <!-- <router-link
         class="tag"
         v-for="tag in visitedViews"
         :key="tag.path"
@@ -14,10 +30,14 @@
       >
         <span>{{ tag.meta.title }}</span>
         <a-icon type="close" @click.prevent.stop="onCloseTag(tag)"></a-icon>
-      </router-link>
+      </router-link> -->
     </div>
     <div class="right-operation">
-      <a-button icon="right"></a-button>
+      <a-button
+        :disabled="btnDisabled"
+        icon="right"
+        @click="onHandleScroll(120)"
+      ></a-button>
     </div>
   </div>
 </template>
@@ -30,7 +50,7 @@ export default {
   data() {
     return {
       routes,
-      affixTags: [],
+      btnDisabled: false,
     };
   },
   computed: {
@@ -77,6 +97,35 @@ export default {
         this.$store.dispatch("tagsView/addVisitedView", this.$route);
       }
     },
+    onMouseScroll(e) {
+      if (e.type === "mousewheel" || e.type === "DOMMouseScroll") {
+        if (this.$refs.tagsContent.scrollLeft + e.wheelDelta > 0) {
+          this.$refs.tagsContent.scrollLeft += e.wheelDelta;
+        } else {
+          this.$refs.tagsContent.scrollLeft = 0;
+        }
+      }
+    },
+    onHandleScroll(offset) {
+      this.btnDisabled = true;
+      let fragment = offset / 40;
+      let index = 1;
+      let timer = setInterval(() => {
+        if (this.$refs.tagsContent.scrollLeft + fragment > 0) {
+          this.$refs.tagsContent.scrollLeft += fragment;
+        } else {
+          this.$refs.tagsContent.scrollLeft = 0;
+          clearInterval(timer);
+        }
+        if (index < 40) {
+          index++;
+        } else {
+          clearInterval(timer);
+        }
+
+        this.btnDisabled = false;
+      }, 5);
+    },
   },
 };
 </script>
@@ -87,7 +136,7 @@ export default {
   justify-content: space-between;
   height: 38px;
   width: 100%;
-  background: #f0f0f0;
+  background: #e6e5e5;
 
   .left-operation,
   .right-operation {
@@ -108,48 +157,77 @@ export default {
   }
 
   .tags {
-    display: flex;
-    align-items: center;
+    position: relative;
+    height: 38px;
     width: calc(100% - 50px);
+    padding: 2px 5px;
 
-    .tag {
+    .tags-content {
       position: relative;
-      display: inline-block;
-      height: 31px;
-      line-height: 31px;
-      margin-right: 5px;
-      padding: 0 5px;
-      background: #fff;
-      border-radius: 3px;
+      width: 100%;
+      height: 34px;
+      line-height: 34px;
+      overflow-y: hidden;
+      overflow-x: scroll;
+      white-space: nowrap;
+      background: #f0f0f0;
 
-      &:nth-child(1) {
-        margin-left: 5px;
+      &::-webkit-scrollbar {
+        /* 滚动条样式 */
+        width: 0; /* 高宽分别对应横竖滚动条的尺寸 */
+        height: 0;
+      }
+      &::-webkit-scrollbar-thumb {
+        /* 滚动条滑块 */
+        border-radius: 6px;
+        /* -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); */
+        background: rgba(195, 195, 196, 0.5);
+      }
+      &::-webkit-scrollbar-track {
+        /* 滚动槽 */
+        /* -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); */
+        border-radius: 5px;
+        background: transparent;
       }
 
-      &::before {
-        content: "";
+      .tag {
+        position: relative;
         display: inline-block;
-        background: #dfdfdf;
-        width: 8px;
-        height: 8px;
-        margin-right: 5px;
-        border-radius: 50%;
-        transition: background-color 0.6s ease;
-      }
+        height: 34px;
+        line-height: 34px;
+        padding: 0 5px;
+        background: #fff;
+        border-radius: 3px;
 
-      &.active {
-        &::before {
-          background: #2d8cf0;
+        &:not(:last-child) {
+          margin-right: 5px;
         }
-      }
 
-      i {
-        font-size: 10px;
-        margin-left: 5px;
-      }
+        &::before {
+          content: "";
+          display: inline-block;
+          background: #dfdfdf;
+          width: 8px;
+          height: 8px;
+          margin-right: 5px;
+          border-radius: 50%;
+          transition: background-color 0.6s ease;
+        }
 
-      &:hover {
-        opacity: 0.8;
+        &.active {
+          &::before {
+            background: #2d8cf0;
+          }
+        }
+
+        i {
+          font-size: 10px;
+          margin-left: 5px;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }

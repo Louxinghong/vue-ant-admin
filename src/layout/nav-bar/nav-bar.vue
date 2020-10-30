@@ -56,6 +56,7 @@ export default {
   width: 100%;
   padding: 0 30px 0 13px;
   box-shadow: 0 2px 6px rgba(0, 21, 41, 0.35);
+  z-index: 99;
 
   i {
     font-size: 18px;
