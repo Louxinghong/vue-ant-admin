@@ -16,6 +16,7 @@
 <script>
 export default {
   name: "DeleteModel",
+  global: true,
   data() {
     return {
       visible: false,
@@ -34,7 +35,7 @@ export default {
     },
     onConfirmDelete() {
       this.onCancelDelete();
-      this.$emit("listenToChangebtn", this.data);
+      this.$emit("listenToChangeBtn", this.data);
     },
     onCancelDelete() {
       this.visible = false;

@@ -33,13 +33,10 @@
 
 <script>
 import url from "../../assets/js/config";
-import deleteModel from "../delete-model/deleteModel.vue";
 
 export default {
   name: "UploadList",
-  components: {
-    deleteModel,
-  },
+  global: true,
   model: {
     prop: "params",
     event: "listenToChangebtn",

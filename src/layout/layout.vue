@@ -46,7 +46,7 @@ export default {
     left: 0;
     right: 0;
     transition: all 0.3s;
-    z-index: 9999;
+    z-index: 999;
 
     .side-bar {
       width: 100%;
