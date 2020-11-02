@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import SideBar from "./side-bar/side-bar.vue";
-import NavBar from "./nav-bar/nav-bar.vue";
-import MainContainer from "./main-container/main-container.vue";
+import SideBar from "./components/side-bar/side-bar.vue";
+import NavBar from "./components/nav-bar/nav-bar.vue";
+import MainContainer from "./components/main-container/main-container.vue";
 
 export default {
   name: "Layout",
