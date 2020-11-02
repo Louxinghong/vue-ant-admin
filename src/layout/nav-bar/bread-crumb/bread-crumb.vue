@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "Breadcrumb",
+  name: "BreadCrumb",
   data() {
     return {
       breadCrumbs: [],
@@ -44,3 +44,9 @@ export default {
   },
 };
 </script>
+
+<style lang="less" scoped>
+.ant-breadcrumb {
+  transition: all 0.5s;
+}
+</style>

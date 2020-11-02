@@ -155,13 +155,13 @@ export default {
     position: relative;
     height: 38px;
     width: calc(100% - 50px);
-    padding: 2px 5px;
+    padding: 3px 5px;
 
     .tags-content {
       position: relative;
       width: 100%;
-      height: 34px;
-      line-height: 34px;
+      height: 32px;
+      line-height: 32px;
       overflow-y: hidden;
       overflow-x: scroll;
       white-space: nowrap;
@@ -188,8 +188,8 @@ export default {
       .tag {
         position: relative;
         display: inline-block;
-        height: 34px;
-        line-height: 34px;
+        height: 32px;
+        line-height: 32px;
         padding: 0 5px;
         background: #fff;
         border-radius: 3px;
