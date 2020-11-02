@@ -1,5 +1,9 @@
 // vue.config.js for less-loader@6.0.0
 module.exports = {
+  // 打包路径
+  publicPath: "./",
+  // 输出目录
+  outputDir: "dist",
   runtimeCompiler: true,
   configureWebpack: {
     module: {
