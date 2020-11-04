@@ -29,7 +29,7 @@
     </a-modal>
     <delete-model
       ref="deleteModel"
-      @listenToChangebtn="onConfirmDelete"
+      @onListenToChangebtn="onConfirmDelete"
     ></delete-model>
   </div>
 </template>
@@ -42,7 +42,7 @@ export default {
   global: true,
   // model: {
   //   prop: "params",
-  //   event: "listenToChangebtn",
+  //   event: "onListenToChangebtn",
   // },
   props: {
     params: {
@@ -153,14 +153,14 @@ export default {
             sendName += "," + item.name;
           }
         });
-        this.$emit("listenToChangebtn", {
+        this.$emit("onListenToChangebtn", {
           url: sendUrl,
           name: sendName,
         });
       } else {
         this.loading = false;
         this.$message.error(res.data.msg, 5);
-        this.$emit("listenToChangebtn", {
+        this.$emit("onListenToChangebtn", {
           url: "",
           name: "",
         });
@@ -195,7 +195,7 @@ export default {
           sendName += "," + item.name;
         }
       });
-      this.$emit("listenToChangebtn", {
+      this.$emit("onListenToChangebtn", {
         url: sendUrl,
         name: sendName,
       });

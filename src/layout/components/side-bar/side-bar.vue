@@ -122,7 +122,6 @@ export default {
     display: flex;
     align-items: center;
     height: 60px;
-    line-height: 60px;
     padding: 0 20px;
     background-color: #012b53;
 

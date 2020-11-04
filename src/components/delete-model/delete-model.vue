@@ -35,7 +35,7 @@ export default {
     },
     onConfirmDelete() {
       this.onCancelDelete();
-      this.$emit("listenToChangeBtn", this.data);
+      this.$emit("onListenToChangeBtn", this.data);
     },
     onCancelDelete() {
       this.visible = false;

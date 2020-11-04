@@ -5,7 +5,7 @@
 
     <delete-model
       ref="deleteModel"
-      @listenToChangeBtn="onConfirmDelete"
+      @onListenToChangeBtn="onConfirmDelete"
     ></delete-model>
   </div>
 </template>

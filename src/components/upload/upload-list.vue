@@ -26,7 +26,7 @@
     </a-upload>
     <delete-model
       ref="deleteModel"
-      @listenToChangebtn="onConfirmDelete"
+      @onListenToChangeBtn="onConfirmDelete"
     ></delete-model>
   </div>
 </template>
@@ -39,7 +39,7 @@ export default {
   global: true,
   model: {
     prop: "params",
-    event: "listenToChangebtn",
+    event: "onListenToChangeBtn",
   },
   props: {
     params: {
@@ -150,7 +150,7 @@ export default {
             sendData += "," + item.url;
           }
         });
-        this.$emit("listenToChangebtn", sendData);
+        this.$emit("onListenToChangeBtn", sendData);
       } else {
         this.loading = false;
         this.$message.error(res.data.msg, 5);
@@ -194,9 +194,9 @@ export default {
         });
       }
 
-      this.$emit("listenToChangebtn", sendData);
+      this.$emit("onListenToChangeBtn", sendData);
       if (this.infoitemid) {
-        this.$emit("listenToDelete", {
+        this.$emit("onListenToDelete", {
           infoitemid: this.infoitemid,
           id: id,
         });
