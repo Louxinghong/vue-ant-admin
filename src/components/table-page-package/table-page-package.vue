@@ -114,19 +114,27 @@ export default {
             id: 1,
             name: "张三",
             mobile: "13899990000",
-            status: "良好",
+            registerDate: "2020-01-01 10:10:10",
+            avatar: require("@/assets/images/admin.png"),
+            status: "normal",
           },
           {
             id: 2,
             name: "李四",
             mobile: "13688887777",
-            status: "一般",
+            registerDate: "2020-02-02 10:20:30",
+            avatar: [
+              require("@/assets/images/admin.png"),
+              require("@/assets/images/admin.png"),
+            ],
+            status: "general",
           },
           {
             id: 3,
             name: "王五",
             mobile: "13455556666",
-            status: "差劲",
+            registerDate: "2020-03-03 10:10:10",
+            status: "error",
           },
         ];
         this.$set(this.pagination, "total", 3);

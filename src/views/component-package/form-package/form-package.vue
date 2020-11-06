@@ -73,8 +73,51 @@ export default {
           dataIndex: "mobile",
         },
         {
+          title: "头像",
+          dataIndex: "avatar",
+          image: true,
+        },
+        {
+          title: "注册时间",
+          dataIndex: "registerDate",
+          formatter: (row) => {
+            return row.registerDate.substr(0, 10); // YYYY-MM-DD
+          },
+        },
+        {
           title: "状态",
           dataIndex: "status",
+          tags: [
+            {
+              label: "正常",
+              color: "green",
+              onShow: (row) => row.status === "normal",
+            },
+            {
+              label: "一般",
+              color: "orange",
+              onShow: (row) => row.status === "general",
+            },
+            {
+              label: "异常",
+              color: "red",
+              onShow: (row) => row.status === "error",
+            },
+          ],
+        },
+        {
+          title: "操作",
+          width: 180,
+          operations: [
+            {
+              label: "测试按钮1",
+              onClick: () => alert("阿巴阿巴"),
+            },
+            {
+              label: "测试按钮2",
+              onClick: () => alert("阿勒阿勒"),
+            },
+          ],
         },
       ],
       extraParams: {},
