@@ -1,0 +1,17 @@
+{
+  "testFather": {
+    "testSon": {
+      "title": "The Second Floor",
+      "deleteBtnTitle": "test common componet delete model",
+      "deleteModel": {
+        "title": "test delete model",
+        "content": "Are you sure you want to test the deletion ?"
+      },
+      "deleteWord": "Delete success !"
+    }
+  },
+  "deleteModel": {
+    "confirm": "confirm",
+    "cancel": "cancel"
+  }
+}

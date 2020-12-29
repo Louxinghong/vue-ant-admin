@@ -1,0 +1,17 @@
+{
+  "testFather": {
+    "testSon": {
+      "title": "第二层",
+      "deleteBtnTitle": "测试公共组件删除弹窗",
+      "deleteModel": {
+        "title": "测试删除弹窗",
+        "content": "确定要测试删除吗？"
+      },
+      "deleteWord": "删除成功"
+    }
+  },
+  "deleteModel": {
+    "confirm": "确认",
+    "cancel": "取消"
+  }
+}

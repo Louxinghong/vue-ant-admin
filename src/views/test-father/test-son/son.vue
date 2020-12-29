@@ -1,7 +1,12 @@
 <template>
   <div class="test-son">
-    <p>第二层</p>
-    <a-button @click="onShowTestModel">测试公共组件删除弹窗</a-button>
+    <a-button type="primary" @click="onChangeLanguage"
+      >切换{{ nowLanguage === "zh" ? "英文" : "中文" }}</a-button
+    >
+    <p>{{ $t("testFather.testSon.title") }}</p>
+    <a-button @click="onShowTestModel">
+      {{ $t("testFather.testSon.deleteBtnTitle") }}
+    </a-button>
 
     <delete-model
       ref="deleteModel"
@@ -11,17 +16,31 @@
 </template>
 
 <script>
+import storage from "@/assets/js/localstorage";
+
 export default {
   name: "TestSon",
+  data() {
+    return {
+      nowLanguage: "zh",
+    };
+  },
   methods: {
+    onChangeLanguage() {
+      this.nowLanguage = this.nowLanguage === "zh" ? "en" : "zh";
+      this.$i18n.locale = this.nowLanguage;
+      storage.save("localeLanguage", this.nowLanguage);
+    },
     onShowTestModel() {
       this.$refs.deleteModel.handleshowModal({
-        title: "测试删除弹窗",
-        content: "确定要测试删除吗？",
+        title: this.$i18n.t("testFather.testSon.deleteModel.title"),
+        content: this.$i18n.t("testFather.testSon.deleteModel.content"),
       });
     },
     onConfirmDelete(value) {
-      this.$message.success(`删除成功${value}`);
+      this.$message.success(
+        `${this.$i18n.t("testFather.testSon.deleteWord")}${value}`
+      );
     },
   },
 };

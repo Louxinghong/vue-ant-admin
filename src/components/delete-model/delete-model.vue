@@ -4,11 +4,19 @@
       :title="title"
       :visible="visible"
       :confirm-loading="loading"
-      @ok="onConfirmDelete"
       @cancel="onCancelDelete"
     >
       <img class="warnImg" src="../../assets/images/warn.png" alt="" />
       <span>{{ content ? content : "确认要删除相关信息吗" }}</span>
+
+      <template slot="footer">
+        <a-button :loading="loading" @click="onCancelDelete">
+          {{ $t("deleteModel.cancel") }}
+        </a-button>
+        <a-button type="primary" :loading="loading" @click="onConfirmDelete">
+          {{ $t("deleteModel.confirm") }}
+        </a-button>
+      </template>
     </a-modal>
   </div>
 </template>
