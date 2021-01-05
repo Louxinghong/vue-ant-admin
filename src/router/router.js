@@ -66,6 +66,15 @@ export const routes = [
           ),
         meta: { title: "表格组件", icon: "" },
       },
+      {
+        path: "message-code",
+        name: "ComponentMessageCode",
+        component: () =>
+          import(
+            /** webpackChunkName: 'group-component-package' */ "@/views/component-package/message-code/message-code.vue"
+          ),
+        meta: { title: "短信验证", icon: "" },
+      },
     ],
   },
   {
