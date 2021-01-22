@@ -108,6 +108,25 @@ export const routes = [
       },
     ],
   },
+  {
+    path: "/third-party-plug",
+    redirect: "/third-party-plug/map",
+    name: "ThirdPartyPlug",
+    component: Layout,
+    isShowFirstLevel: true,
+    meta: { title: "第三方插件库", icon: "deployment-unit" },
+    children: [
+      {
+        path: "map",
+        name: "ThirdPartyPlugMap",
+        component: () =>
+          import(
+            /** webpackChunkName: 'group-third-party-plug' */ "@/views/third-party-plug/map/map.vue"
+          ),
+        meta: { title: "百度地图插件", icon: "" },
+      },
+    ],
+  },
 ];
 
 export default new VueRouter({
