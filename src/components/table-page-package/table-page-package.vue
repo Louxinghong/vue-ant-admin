@@ -1,6 +1,14 @@
 <template>
   <div class="table-page-package">
-    <form-container @onListenToSearch="onFormSearch"></form-container>
+    <form-container
+      :loading="tableLoading || tempLoading"
+      @onListenToSearch="onFormSearch"
+    >
+      <template v-slot:form-content>
+        <slot name="form-content"></slot>
+      </template>
+    </form-container>
+
     <operation-container>
       <template v-slot:left-operation>
         <slot name="left-operation"></slot>
@@ -9,11 +17,17 @@
         <slot name="right-operation"></slot>
       </template>
     </operation-container>
+
     <table-container
+      :loading="tableLoading || tempLoading"
       :table-data="tableData"
       :pagination="pagination"
       @onListenToTable="onFetch"
-    ></table-container>
+    >
+      <template v-slot:table-content>
+        <slot name="table-content"></slot>
+      </template>
+    </table-container>
   </div>
 </template>
 
@@ -34,13 +48,16 @@ export default {
   },
   provide() {
     return {
-      loading: this.loading,
       formData: this.formData,
       columnData: this.columnData,
       tableRowKey: this.tableRowKey,
     };
   },
   props: {
+    tempLoading: {
+      type: Boolean,
+      default: false,
+    },
     formData: {
       type: Array,
       default: () => [],
@@ -64,14 +81,16 @@ export default {
   },
   data() {
     return {
-      loading: false,
+      tableLoading: false,
       fieldsValue: {},
       tableData: [],
       pagination: {},
     };
   },
-  created() {
-    this.onFormSearch();
+  mounted() {
+    if (this.requestApi) {
+      this.onFormSearch();
+    }
   },
   methods: {
     onRefresh() {
@@ -104,8 +123,8 @@ export default {
       };
       try {
         // 模拟请求
-        this.loading = true;
-        this.loading = false;
+        this.tableLoading = true;
+        this.tableLoading = false;
         console.log(url[this.requestApi]);
         console.log(params);
         // 模拟数据
@@ -141,10 +160,10 @@ export default {
         ];
         this.$set(this.pagination, "total", 3);
       } catch (err) {
-        this.loading = false;
+        this.tableLoading = false;
         this.$message.error(err);
       } finally {
-        this.loading = false;
+        this.tableLoading = false;
       }
     },
   },

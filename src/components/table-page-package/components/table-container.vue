@@ -1,5 +1,7 @@
 <template>
   <div class="table-container">
+    <slot name="table-content"></slot>
+
     <a-table
       :row-key="(record) => record[tableRowKey]"
       :data-source="tableData"
@@ -143,8 +145,12 @@
 <script>
 export default {
   name: "TableContainer",
-  inject: ["loading", "columnData", "tableRowKey"],
+  inject: ["columnData", "tableRowKey"],
   props: {
+    loading: {
+      type: Boolean,
+      default: false,
+    },
     tableData: {
       type: Array,
       default: () => [],

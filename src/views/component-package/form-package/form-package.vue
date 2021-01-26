@@ -1,6 +1,7 @@
 <template>
   <div class="form-package">
     <table-page-package
+      :temp-loading="loading"
       :form-data="formData"
       :extra-params="extraParams"
       :column-data="columnData"
@@ -8,10 +9,12 @@
       :request-api="'getTestData'"
     >
       <template v-slot:left-operation>
-        <a-button type="primary">左边测试按钮</a-button>
+        <a-button type="primary" :loading="loading" @click="onLeftText"
+          >左边测试按钮</a-button
+        >
       </template>
       <template v-slot:right-operation>
-        <a-button type="primary">右边测试按钮</a-button>
+        <a-button type="primary" :loading="loading">右边测试按钮</a-button>
       </template>
     </table-page-package>
   </div>
@@ -24,6 +27,7 @@ export default {
   name: "ComponetPackageFormPackage",
   data() {
     return {
+      loading: false,
       formData: [
         {
           field: "testInput",
@@ -168,6 +172,9 @@ export default {
   methods: {
     onHandleTextSearch(value) {
       console.log(value);
+    },
+    onLeftText() {
+      this.loading = true;
     },
   },
 };

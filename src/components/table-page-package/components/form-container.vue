@@ -1,5 +1,7 @@
 <template>
   <div class="form-container">
+    <slot name="form-content"></slot>
+
     <a-form :form="form" layout="inline">
       <a-form-item
         v-for="item in formData"
@@ -127,7 +129,13 @@
 <script>
 export default {
   name: "FormContainer",
-  inject: ["loading", "formData"],
+  inject: ["formData"],
+  props: {
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       form: this.$form.createForm(this, { name: "search" }),
