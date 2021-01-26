@@ -8,6 +8,7 @@
 
 ### 所需传入参数：
 
+- tempLoading 父组件区域的 loading
 - formData 搜索表单数据
 - extraParams 除搜索表单外所需的搜索条件
 - columnData 表格列数据
