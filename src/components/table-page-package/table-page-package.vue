@@ -84,27 +84,27 @@ export default {
       this.onFetch();
     },
     onFormSearch(value) {
-      this.loading = true;
       this.fieldsValue = { ...value, ...this.extraParams };
       this.pagination = {
-        pageIndex: 1,
         pageSize: 10,
         current: 1,
       };
       this.onFetch();
     },
-    onFetch(paginationChange = {}) {
-      this.pagination = isEmpty(paginationChange)
+    onFetch(value) {
+      this.pagination = isEmpty(value)
         ? this.pagination
         : {
-            ...paginationChange,
+            ...value,
           };
       let params = {
         ...this.fieldsValue,
-        ...this.pagination,
+        pageSize: this.pagination.pageSize,
+        pageIndex: this.pagination.current,
       };
       try {
         // 模拟请求
+        this.loading = true;
         this.loading = false;
         console.log(url[this.requestApi]);
         console.log(params);
@@ -114,19 +114,21 @@ export default {
             id: 1,
             name: "张三",
             mobile: "13899990000",
-            registerDate: "2020-01-01 10:10:10",
+            area: "中国浙江省宁波市奉化区巴拉巴拉巴拉巴拉巴拉",
             avatar: require("@/assets/images/admin.png"),
+            identity: 1,
+            registerDate: "2020-01-01 10:10:10",
             status: "normal",
           },
           {
             id: 2,
             name: "李四",
             mobile: "13688887777",
-            registerDate: "2020-02-02 10:20:30",
             avatar: [
               require("@/assets/images/admin.png"),
               require("@/assets/images/admin.png"),
             ],
+            registerDate: "2020-02-02 10:20:30",
             status: "general",
           },
           {

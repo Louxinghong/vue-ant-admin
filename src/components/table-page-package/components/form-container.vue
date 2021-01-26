@@ -6,12 +6,15 @@
         :label="item.label"
         :key="item.field"
       >
+        <!-- 输入框 -->
         <a-input
           v-if="item.type === 'input'"
           v-decorator="[`${item.field}`]"
           :placeholder="`请输入${item.label}`"
           :style="{ width: item.width ? item.width + 'px' : '160px' }"
         />
+
+        <!-- 数字输入框 -->
         <a-input-number
           v-else-if="item.type === 'input-number'"
           v-decorator="[`${item.field}`]"
@@ -19,6 +22,8 @@
           :min="item.min ? item.min : 0"
           :style="{ width: item.width ? item.width + 'px' : '160px' }"
         />
+
+        <!-- 下拉框 -->
         <a-select
           v-else-if="item.type === 'select'"
           v-decorator="[`${item.field}`]"
@@ -34,18 +39,61 @@
             {{ itemSelect.label }}
           </a-select-option>
         </a-select>
+
+        <!-- 远程搜索框 -->
+        <a-select
+          v-else-if="item.type === 'search-select'"
+          show-search
+          v-decorator="[`${item.field}`]"
+          :placeholder="`请选择${item.label}`"
+          :default-active-first-option="false"
+          :show-arrow="false"
+          :filter-option="false"
+          :not-found-content="null"
+          @search="item.onHandleSearch"
+          :style="{ width: item.width ? item.width + 'px' : '160px' }"
+          allowClear
+        >
+          <a-select-option
+            v-for="(itemSelect, index) in item.options"
+            :key="index"
+            :value="itemSelect.value"
+          >
+            {{ itemSelect.label }}
+          </a-select-option>
+        </a-select>
+
+        <!-- 日期选择框（周） -->
         <a-week-picker
           v-else-if="item.type === 'week'"
           v-decorator="[`${item.field}`]"
           :placeholder="`请选择${item.label}`"
           :style="{ width: item.width ? item.width + 'px' : '160px' }"
         />
+
+        <!-- 日期选择框（月） -->
         <a-month-picker
           v-else-if="item.type === 'month'"
           v-decorator="[`${item.field}`]"
           :placeholder="`请选择${item.label}`"
           :style="{ width: item.width ? item.width + 'px' : '160px' }"
         />
+
+        <!-- 日期选择框（年） -->
+        <a-date-picker
+          v-else-if="item.type === 'year'"
+          v-decorator="[`${item.field}`]"
+          mode="year"
+          format="YYYY"
+          :open="showYear"
+          @focus="onFocusYear(item.field)"
+          @openChange="onOpenChangeYear"
+          @panelChange="onPanelChangeYear"
+          :placeholder="`请选择${item.label}`"
+          :style="{ width: item.width ? item.width + 'px' : '160px' }"
+        />
+
+        <!-- 日期选择框（完整） -->
         <a-date-picker
           v-else-if="item.type === 'date'"
           v-decorator="[`${item.field}`]"
@@ -53,6 +101,8 @@
           :placeholder="`请选择${item.label}`"
           :style="{ width: item.width ? item.width + 'px' : '160px' }"
         />
+
+        <!-- 日期范围选择框 -->
         <a-range-picker
           v-else-if="item.type === 'range-date'"
           v-decorator="[`${item.field}`]"
@@ -60,6 +110,7 @@
           :style="{ width: item.width ? item.width + 'px' : '260px' }"
         />
       </a-form-item>
+
       <a-form-item>
         <a-button
           type="primary"
@@ -80,9 +131,27 @@ export default {
   data() {
     return {
       form: this.$form.createForm(this, { name: "search" }),
+      showYear: false,
+      nowField: null,
     };
   },
   methods: {
+    onFocusYear(field) {
+      this.nowField = field;
+    },
+    onOpenChangeYear(status) {
+      if (status) {
+        this.showYear = true;
+      } else {
+        this.showYear = false;
+      }
+    },
+    onPanelChangeYear(value) {
+      this.form.setFieldsValue({
+        [this.nowField]: value,
+      });
+      this.showYear = false;
+    },
     onSearch() {
       this.form.validateFields((err, fieldsValue) => {
         if (err) {

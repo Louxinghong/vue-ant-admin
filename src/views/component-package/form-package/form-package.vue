@@ -42,6 +42,13 @@ export default {
           options: [],
         },
         {
+          field: "testSearchSelect",
+          label: "测试远程搜索选择",
+          type: "search-select",
+          onHandleSearch: (value) => this.onHandleTextSearch(value),
+          options: [],
+        },
+        {
           field: "testWeek",
           label: "测试周数",
           type: "week",
@@ -50,6 +57,11 @@ export default {
           field: "testMonth",
           label: "测试月份",
           type: "month",
+        },
+        {
+          field: "testYear",
+          label: "测试年份",
+          type: "year",
         },
         {
           field: "testDate",
@@ -73,9 +85,22 @@ export default {
           dataIndex: "mobile",
         },
         {
+          title: "地区",
+          dataIndex: "area",
+          isNeedTooltip: true,
+          toolLength: 10,
+        },
+        {
           title: "头像",
           dataIndex: "avatar",
           image: true,
+        },
+        {
+          title: "身份",
+          dataIndex: "identity",
+          formatter: (row) => {
+            return row.identity === 1 ? "管理员" : "子账号";
+          },
         },
         {
           title: "注册时间",
@@ -139,6 +164,11 @@ export default {
   },
   created() {
     modifyFormData(this.formData, "testSelect", "options", this.testOptions);
+  },
+  methods: {
+    onHandleTextSearch(value) {
+      console.log(value);
+    },
   },
 };
 </script>

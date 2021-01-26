@@ -1,9 +1,10 @@
-import storage from "@/assets/js/localstorage";
 import axios from "axios";
+import storage from "@/assets/js/localstorage";
 import router from "@/router/router";
-axios.defaults.timeout = 20000;
-axios.defaults.retry = 0;
-axios.defaults.retryDelay = 1000;
+
+axios.defaults.baseURL = "https://api.bilibili.com";
+axios.defaults.timeout = 3000;
+axios.defaults.headers.post["Content-Type"] = "application/json; charset=UTF-8";
 
 //接口post转换接口参数格式
 axios.defaults.transformRequest = [
@@ -17,9 +18,18 @@ axios.defaults.transformRequest = [
       ) {
         return data;
       }
-      // 普通参数
-      config["Content-Type"] = "application/json; charset=UTF-8";
-      return JSON.stringify(data);
+      // FormData格式
+      else if (config["Content-Type"] === "application/x-www-form-urlencoded") {
+        let tempData = [];
+        Object.keys(data).forEach((item) => {
+          tempData.push(`${item}=${data[item]}`);
+        });
+        return tempData.join("&");
+      }
+      // JSON格式
+      else {
+        return JSON.stringify(data);
+      }
     }
     return data;
   },
@@ -41,7 +51,6 @@ axios.interceptors.request.use(
 // 响应拦截器
 axios.interceptors.response.use(
   (data) => {
-    // 响应成功关闭loading
     let errorCode = data.data.errorCode;
     switch (errorCode) {
       case -99:
