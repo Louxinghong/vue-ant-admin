@@ -58,6 +58,12 @@ const formData = [
     label: "测试月份",
     type: "month",
   },
+  // 日期选择框（年）
+  {
+    field: "testYear",
+    label: "测试年份",
+    type: "year",
+  },
   // 日期选择框（完整）
   {
     field: "testDate",
