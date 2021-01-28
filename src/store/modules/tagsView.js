@@ -19,8 +19,8 @@ export default {
       for (const [i, v] of state.visitedViews.entries()) {
         if (v.path === view.path) {
           state.visitedViews.splice(i, 1);
+          break;
         }
-        break;
       }
     },
   },
