@@ -31,6 +31,7 @@ export const routes = [
     hidden: true,
     component: () =>
       import(/** webpackChunkName: 'group-login' */ "@/views/login/login.vue"),
+    meta: { level: 1 },
   },
   {
     path: "/",
@@ -45,7 +46,7 @@ export const routes = [
           import(
             /** webpackChunkName: 'group-dashboard' */ "@/views/dashboard/dashboard.vue"
           ),
-        meta: { title: "首页", icon: "home" },
+        meta: { title: "首页", icon: "home", level: 2 },
       },
     ],
   },
@@ -55,7 +56,7 @@ export const routes = [
     name: "ComponentPackage",
     component: Layout,
     isShowFirstLevel: true,
-    meta: { title: "公共组件库", icon: "deployment-unit" },
+    meta: { title: "公共组件库", icon: "deployment-unit", level: 2 },
     children: [
       {
         path: "form-package",
@@ -64,7 +65,7 @@ export const routes = [
           import(
             /** webpackChunkName: 'group-component-package' */ "@/views/component-package/form-package/form-package.vue"
           ),
-        meta: { title: "表格组件", icon: "" },
+        meta: { title: "表格组件", icon: "", level: 2 },
       },
       {
         path: "message-code",
@@ -73,7 +74,7 @@ export const routes = [
           import(
             /** webpackChunkName: 'group-component-package' */ "@/views/component-package/message-code/message-code.vue"
           ),
-        meta: { title: "短信验证", icon: "" },
+        meta: { title: "短信验证", icon: "", level: 2 },
       },
     ],
   },
@@ -83,7 +84,7 @@ export const routes = [
     name: "Test",
     component: Layout,
     isShowFirstLevel: true,
-    meta: { title: "多层级测试", icon: "cluster" },
+    meta: { title: "多层级测试", icon: "cluster", level: 2 },
     children: [
       {
         path: "test-first",
@@ -93,7 +94,7 @@ export const routes = [
           import(
             /** webpackChunkName: 'group-test' */ "@/views/test-father/father.vue"
           ),
-        meta: { title: "第一层级", icon: "" },
+        meta: { title: "第一层级", icon: "", level: 2 },
         children: [
           {
             path: "test-second",
@@ -102,7 +103,7 @@ export const routes = [
               import(
                 /** webpackChunkName: 'group-test' */ "@/views/test-father/test-son/son.vue"
               ),
-            meta: { title: "第二层级", icon: "" },
+            meta: { title: "第二层级", icon: "", level: 2 },
           },
         ],
       },
@@ -114,7 +115,7 @@ export const routes = [
     name: "ThirdPartyPlug",
     component: Layout,
     isShowFirstLevel: true,
-    meta: { title: "第三方插件库", icon: "deployment-unit" },
+    meta: { title: "第三方插件库", icon: "deployment-unit", level: 2 },
     children: [
       {
         path: "map",
@@ -123,7 +124,7 @@ export const routes = [
           import(
             /** webpackChunkName: 'group-third-party-plug' */ "@/views/third-party-plug/map/map.vue"
           ),
-        meta: { title: "百度地图插件", icon: "" },
+        meta: { title: "百度地图插件", icon: "", level: 2 },
       },
     ],
   },

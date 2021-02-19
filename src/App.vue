@@ -30,16 +30,16 @@ export default {
     //使用watch 监听$router的变化
     $route(to, from) {
       //如果to索引大于from索引,判断为前进状态,反之则为后退状态
-      if (to.meta.index > from.meta.index) {
+      if (to.meta.level > from.meta.level) {
         //设置动画名称
         this.enterClass = "animated fadeInRight";
         this.leaveClass = "animated fadeOut";
       }
-      if (to.meta.index < from.meta.index) {
+      if (to.meta.level < from.meta.level) {
         this.enterClass = "animated fadeIn";
         this.leaveClass = "animated fadeOutRight";
       }
-      if (to.meta.index == from.meta.index) {
+      if (to.meta.level === from.meta.level) {
         this.enterClass = "";
         this.leaveClass = "";
       }

@@ -8,6 +8,7 @@ import Echarts from "echarts";
 import components from "@/components/components";
 import i18n from "@/language/index";
 import BaiduMap from "vue-baidu-map";
+import animate from "animate.css";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.less";
 import "@/assets/css/main.less";
@@ -26,6 +27,8 @@ Vue.use(Antd);
 Vue.use(BaiduMap, {
   ak: "MGyhho5QP6ZGwn1Y7XMtBlI1w4LHDATu",
 });
+
+Vue.use(animate);
 
 Vue.config.productionTip = false;
 
