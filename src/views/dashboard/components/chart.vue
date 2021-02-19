@@ -14,7 +14,7 @@ export default {
   methods: {
     drawLine() {
       // 每月制成率
-      let purchaseChart = this.$echarts.init(document.getElementById("chart"));
+      let purchaseChart = this.echarts.init(document.getElementById("chart"));
       // 绘制图表
       purchaseChart.setOption({
         color: [

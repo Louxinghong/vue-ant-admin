@@ -11,15 +11,13 @@ axios.defaults.transformRequest = [
   (data, config) => {
     if (data) {
       // 文件类型
-      if (
-        config["Content-Type"] &&
-        config["Content-Type"].toLowerCase() ===
-          "multipart/form-data;charset=utf-8"
-      ) {
+      if (config.post["Content-Type"] === "multipart/form-data;charset=utf-8") {
         return data;
       }
       // FormData格式
-      else if (config["Content-Type"] === "application/x-www-form-urlencoded") {
+      else if (
+        config.post["Content-Type"] === "application/x-www-form-urlencoded"
+      ) {
         let tempData = [];
         Object.keys(data).forEach((item) => {
           tempData.push(`${item}=${data[item]}`);

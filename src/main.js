@@ -17,7 +17,7 @@ Object.keys(components).forEach((key) => {
   Vue.component(key, components[key]);
 });
 
-Vue.prototype.$echarts = Echarts;
+Vue.prototype.echarts = Echarts;
 
 Vue.prototype.axios = axios;
 
