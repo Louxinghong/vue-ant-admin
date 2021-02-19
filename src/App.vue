@@ -2,6 +2,7 @@
   <a-locale-provider :locale="zh_CN">
     <div id="app">
       <transition
+        mode="out-in"
         :enter-active-class="enterClass"
         :leave-active-class="leaveClass"
       >
