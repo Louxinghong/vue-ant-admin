@@ -10,7 +10,6 @@ import i18n from "@/language/index";
 import BaiduMap from "vue-baidu-map";
 import animate from "animate.css";
 import Antd from "ant-design-vue";
-import "ant-design-vue/dist/antd.less";
 import "@/assets/css/main.less";
 
 // 注册全局组件
@@ -30,7 +29,13 @@ Vue.use(BaiduMap, {
 
 Vue.use(animate);
 
-Vue.config.productionTip = false;
+if (process.env.NODE_ENV !== "production") {
+  // 禁用生产环境提示
+  Vue.config.productionTip = false;
+
+  // 引入开发环境模块
+  require("./devModule");
+}
 
 new Vue({
   router,

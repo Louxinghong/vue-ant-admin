@@ -1,0 +1,49 @@
+{
+  "common": [
+    {
+      "id": "vue",
+      "assets": "//cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js",
+      "global": "Vue"
+    },
+    {
+      "id": "vue-router",
+      "assets": "//cdn.jsdelivr.net/npm/vue-router@3.5.1/dist/vue-router.min.js",
+      "global": "VueRouter"
+    },
+    {
+      "id": "vuex",
+      "assets": "//cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.min.js",
+      "global": "Vuex"
+    },
+    {
+      "id": "axios",
+      "assets": "//cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js",
+      "global": "Vuex"
+    },
+    {
+      "id": "lodash",
+      "assets": "//cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js",
+      "global": "_"
+    },
+    {
+      "id": "animate.css",
+      "assets": "//cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css",
+      "global": null
+    },
+    {
+      "id": "echarts",
+      "assets": "//cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js",
+      "global": "Echarts"
+    },
+    {
+      "id": "vue-baidu-map",
+      "assets": "//cdn.jsdelivr.net/npm/vue-baidu-map@0.21.22/index.min.js",
+      "global": "VueBaiduMap"
+    },
+    {
+      "id": "vue-i18n",
+      "assets": "//cdn.jsdelivr.net/npm/vue-i18n@8.24.0/dist/vue-i18n.common.min.js",
+      "global": "VueI18n"
+    }
+  ]
+}

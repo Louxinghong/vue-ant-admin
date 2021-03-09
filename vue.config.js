@@ -1,8 +1,10 @@
-// vue.config.js for less-loader@6.0.0
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+//   .BundleAnalyzerPlugin;
+const externals = require("./externals");
+const isProduct = process.env.NODE_ENV !== "development";
+
 module.exports = {
-  // 打包路径
   publicPath: "./",
-  // 输出目录
   outputDir: "dist",
   runtimeCompiler: true,
   configureWebpack: {
@@ -10,18 +12,11 @@ module.exports = {
       rules: [
         {
           test: /\.js?$/,
-          // include: [
-          //     resolve("/node_modules/dom7"),
-          //     resolve("/node_modules/weui")
-          // ],
-          // exclude: /(node_modules)/,
           loader: "babel-loader",
-          // query: {
-          //     presets: ['latest']
-          // }
         },
       ],
     },
+    // plugins: [new BundleAnalyzerPlugin()],
   },
   css: {
     loaderOptions: {
@@ -36,5 +31,9 @@ module.exports = {
         },
       },
     },
+  },
+  pluginOptions: {
+    externals: isProduct ? externals : {},
+    lintStyleOnBuild: true,
   },
 };

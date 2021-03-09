@@ -74,7 +74,7 @@ export default {
 
     .main-container {
       position: relative;
-      width: 100%;
+      width: 99.7%;
       height: calc(100% - 88px);
       padding: 10px 15px;
     }
