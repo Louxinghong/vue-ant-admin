@@ -6,6 +6,7 @@
       placeholder="请输入地名关键词"
     ></a-input>
     <baidu-map
+      ref="map"
       class="baidu-map-view"
       :center="center"
       :zoom="zoom"
@@ -40,6 +41,17 @@
 
       <!-- 标记 点 -->
       <bm-marker :position="postionMap"> </bm-marker>
+
+      <!-- 距离 -->
+      <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
+
+      <!-- 公交路线规划 -->
+      <bm-transit
+        :start="addressKeyWord"
+        end="莼湖"
+        :auto-viewport="true"
+        location="宁波"
+      ></bm-transit>
     </baidu-map>
   </div>
 </template>
@@ -61,8 +73,8 @@ export default {
   methods: {
     onHandler({ BMap, map }) {
       console.log(BMap, map);
-      this.center.lng = 116.404;
-      this.center.lat = 39.915;
+      this.center.lng = 121.541176;
+      this.center.lat = 29.720901;
       this.zoom = 15;
     },
   },
