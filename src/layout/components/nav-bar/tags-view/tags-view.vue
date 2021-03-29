@@ -191,6 +191,7 @@ export default {
         height: 32px;
         line-height: 32px;
         padding: 0 5px;
+        color: #c9c9c9;
         background: #fff;
         border-radius: 3px;
 
@@ -210,6 +211,8 @@ export default {
         }
 
         &.active {
+          color: #2d8cf0;
+
           &::before {
             background: #2d8cf0;
           }

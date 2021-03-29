@@ -84,6 +84,7 @@ export default {
   data() {
     return {
       routes,
+      collapsed: false,
     };
   },
   computed: {
@@ -93,6 +94,11 @@ export default {
     activedName() {
       const { name } = this.$route;
       return name;
+    },
+  },
+  methods: {
+    toggleCollapsed() {
+      this.collapsed = !this.collapsed;
     },
   },
 };
@@ -118,16 +124,34 @@ export default {
     background: transparent;
   }
 
+  .ant-menu {
+    .ant-menu-item,
+    .ant-menu-submenu .ant-menu-submenu-title {
+      margin: 0 !important;
+      height: 50px !important;
+      line-height: 50px !important;
+      padding: 0 28px !important;
+
+      i {
+        font-size: 20px !important;
+      }
+
+      span {
+        font-size: 15px;
+      }
+    }
+  }
+
   .side-bar-logo {
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 60px !important;
     padding: 0 20px;
     background-color: #012b53;
 
     i {
-      margin-right: 10px;
-      font-size: 24px;
+      // margin: 2px 10px 0 0;
+      font-size: 24px !important;
     }
 
     span {
@@ -135,34 +159,9 @@ export default {
       font-size: 22px !important;
       font-weight: bold;
     }
+
     &:hover {
       background-color: #012b53 !important;
-    }
-  }
-
-  .ant-menu {
-    .ant-menu-item,
-    .ant-menu-submenu-title {
-      display: flex;
-      align-items: center;
-      height: 52px !important;
-      margin: 0 !important;
-
-      i {
-        margin-right: 10px;
-        font-size: 20px;
-      }
-
-      span {
-        font-size: 15px;
-      }
-    }
-
-    .ant-menu-submenu-title {
-      .slot-title {
-        display: flex;
-        align-items: center;
-      }
     }
   }
 }

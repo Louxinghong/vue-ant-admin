@@ -84,15 +84,12 @@ export default {
     .left-container {
       width: @isCollapse;
 
-      .ant-menu-inline-collapsed {
-        .ant-menu-item,
-        .ant-menu-submenu-title {
-          padding: 0 30px !important;
-
-          i {
-            margin-top: 5px;
-            font-size: 20px;
-          }
+      i {
+        &:nth-child(1) {
+          font-size: 24px !important;
+        }
+        &:not(:first-child) {
+          font-size: 20px !important;
         }
       }
     }
