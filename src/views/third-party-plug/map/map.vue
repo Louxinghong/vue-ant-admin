@@ -40,7 +40,12 @@
       ></bm-geolocation>
 
       <!-- 标记 点 -->
-      <bm-marker :position="postionMap"> </bm-marker>
+      <bm-marker
+        :position="postionMap"
+        :dragging="true"
+        animation="BMAP_ANIMATION_BOUNCE"
+      >
+      </bm-marker>
 
       <!-- 距离 -->
       <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
@@ -67,14 +72,17 @@ export default {
         lat: 0,
       },
       zoom: 3,
-      postionMap: "",
+      postionMap: {
+        lng: 121.470864,
+        lat: 29.633718,
+      },
     };
   },
   methods: {
     onHandler({ BMap, map }) {
       console.log(BMap, map);
-      this.center.lng = 121.541176;
-      this.center.lat = 29.720901;
+      this.center.lng = 121.470864;
+      this.center.lat = 29.633718;
       this.zoom = 15;
     },
   },

@@ -130,7 +130,6 @@ export default {
       margin: 0 !important;
       height: 50px !important;
       line-height: 50px !important;
-      padding: 0 28px !important;
 
       i {
         font-size: 20px !important;
@@ -139,6 +138,12 @@ export default {
       span {
         font-size: 15px;
       }
+    }
+  }
+  .ant-menu-inline-collapsed {
+    .ant-menu-item,
+    .ant-menu-submenu .ant-menu-submenu-title {
+      padding: 0 28px !important;
     }
   }
 
