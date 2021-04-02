@@ -115,7 +115,7 @@ export const routes = [
     name: "ThirdPartyPlug",
     component: Layout,
     isShowFirstLevel: true,
-    meta: { title: "第三方插件库", icon: "deployment-unit", level: 2 },
+    meta: { title: "第三方插件库", icon: "share-alt", level: 2 },
     children: [
       {
         path: "map",
@@ -125,6 +125,15 @@ export const routes = [
             /** webpackChunkName: 'group-third-party-plug' */ "@/views/third-party-plug/map/map.vue"
           ),
         meta: { title: "百度地图插件", icon: "", level: 2 },
+      },
+      {
+        path: "echart",
+        name: "ThirdPartyPlugEChart",
+        component: () =>
+          import(
+            /** webpackChunkName: 'group-third-party-plug' */ "@/views/third-party-plug/echart/echart.vue"
+          ),
+        meta: { title: "图表插件", icon: "", level: 2 },
       },
     ],
   },
