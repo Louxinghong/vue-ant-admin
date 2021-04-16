@@ -138,10 +138,12 @@ export default {
   },
   data() {
     return {
-      form: this.$form.createForm(this, { name: "search" }),
       showYear: false,
       nowField: null,
     };
+  },
+  beforeCreate() {
+    this.form = this.$form.createForm(this, { name: "search" });
   },
   methods: {
     onFocusYear(field) {
