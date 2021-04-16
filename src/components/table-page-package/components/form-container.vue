@@ -138,6 +138,7 @@ export default {
   },
   data() {
     return {
+      form: null,
       showYear: false,
       nowField: null,
     };
