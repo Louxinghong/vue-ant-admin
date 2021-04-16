@@ -135,6 +135,15 @@ export const routes = [
           ),
         meta: { title: "图表插件", icon: "", level: 2 },
       },
+      {
+        path: "count",
+        name: "ThirdPartyPlugCount",
+        component: () =>
+          import(
+            /** webpackChunkName: 'group-third-party-plug' */ "@/views/third-party-plug/count/count.vue"
+          ),
+        meta: { title: "数字滚动", icon: "", level: 2 },
+      },
     ],
   },
 ];
