@@ -6,6 +6,7 @@ const isProduct = process.env.NODE_ENV !== "development";
 module.exports = {
   publicPath: "./",
   outputDir: "dist",
+  productionSourceMap: !isProduct,
   runtimeCompiler: true,
   configureWebpack: {
     module: {

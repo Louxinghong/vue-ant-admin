@@ -4,7 +4,6 @@ import App from "./App.vue";
 import router from "@/router/router";
 import axios from "@/axios/axios";
 import store from "@/store/store";
-import Echarts from "echarts";
 import components from "@/components/components";
 import i18n from "@/language/index";
 import BaiduMap from "vue-baidu-map";
@@ -16,8 +15,6 @@ import "@/assets/css/main.less";
 Object.keys(components).forEach((key) => {
   Vue.component(key, components[key]);
 });
-
-Vue.prototype.echarts = Echarts;
 
 Vue.prototype.axios = axios;
 

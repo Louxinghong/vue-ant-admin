@@ -1,91 +1,39 @@
 <template>
   <div class="echart-container">
-    <div id="chart" style="width: 100%;height: 35vh;margin-top: 30px;"></div>
+    <e-charts class="chart-one" :option="chartData"></e-charts>
   </div>
 </template>
 
 <script>
+import { cloneDeep } from "lodash";
+import { pieOption } from "./data";
+
 export default {
   name: "EChart",
   data() {
     return {
-      purchaseChart: null,
+      chartData: {},
     };
   },
   mounted() {
-    this.purchaseChart = this.echarts.init(document.getElementById("chart"));
-    this.onDrawLine();
-    window.addEventListener("resize", this.onResize);
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
-  },
-  methods: {
-    onDrawLine() {
-      // 绘制图表
-      this.purchaseChart.setOption({
-        visualMap: {
-          // 不显示 visualMap 组件，只用于明暗度的映射
-          show: false,
-          // 映射的最小值为 80
-          min: 80,
-          // 映射的最大值为 600
-          max: 600,
-          inRange: {
-            // 明暗度的范围是 1 到 0
-            colorLightness: [1, 0],
-          },
-        },
-        series: [
-          {
-            name: "访问来源",
-            type: "pie",
-            radius: "55%",
-            roseType: "angle",
-            data: [
-              {
-                value: 235,
-                name: "视频广告",
-                itemStyle: {
-                  color: "#c23531",
-                },
-              },
-              {
-                value: 274,
-                name: "联盟广告",
-                itemStyle: {
-                  color: "#c23531",
-                },
-              },
-              {
-                value: 310,
-                name: "邮件营销",
-                itemStyle: {
-                  color: "#c23531",
-                },
-              },
-              {
-                value: 335,
-                name: "直接访问",
-                itemStyle: {
-                  color: "#c23531",
-                },
-              },
-              {
-                value: 400,
-                name: "搜索引擎",
-                itemStyle: {
-                  color: "#c23531",
-                },
-              },
-            ],
-          },
-        ],
-      });
-    },
-    onResize() {
-      this.purchaseChart.resize();
-    },
+    this.chartData = cloneDeep(pieOption);
+    this.chartData.series[0].data = [
+      {
+        name: "测试一号",
+        value: 2333,
+      },
+      {
+        name: "测试二号",
+        value: 3222,
+      },
+    ];
   },
 };
 </script>
+
+<style scoped>
+.chart-one {
+  height: 200px;
+  height: 200px;
+}
+</style>
